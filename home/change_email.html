@@ -1,0 +1,45 @@
+{% extends 'home/mainpage.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChangeEmail</title>
+
+    <style>
+.card{
+height: 180px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+border-radius: 10px;
+background-color: rgba(231,201,162,0.9) !important;
+box-shadow: 2px 2px 5px 5px #6a1b21;
+}
+
+    </style>
+</head>
+<body>
+<div class="card" style="margin-left:540px">
+
+            <form method="POST" style="color:#6a1b21; margin-top:100px">
+                <br>
+                {% csrf_token %}
+              <center><div class="form-group" style="width:300px">
+                    <label>New Mail Address</label>
+                    <div>{{form.email}}</div>
+                </div></center>
+                &nbsp
+                <center><button type="submit" class="btn" style="background-color:#6a1b21;color:#e7c9a2 ; margin-top:10px; height:30px">Save</button></center>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
+{% endblock %}

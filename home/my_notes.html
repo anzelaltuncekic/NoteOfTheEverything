@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'home/mainpage.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Notes</title>
+     <link rel="stylesheet" type="text/css" href="/static/css/my_notes.css">
+</head>
+
+<body class="first-info">
+{% if my_notes_count == 0  %}
+      <center><b><h2 style="color:#6a1b21 ;border: 7px solid #6a1b21; background-color:#e7c9a2; width:85rem !important; border-radius: 10px"><center>You do not have any notes yet</center></h2></b></center>
+      <center><img src="{% static 'images/book2.png' %}"  style="height: 10%; width: 10%"></center>
+      <center><b><h4 style="color:#6a1b21 ;border: 5px solid #6a1b21; background-color:#e7c9a2; width:50rem !important; border-radius: 10px"><center>If you want to share notes, Please <a href="{% url 'ShareNote' %}">Click Here</a></center></h4></b></center>
+{% else %}
+<section>
+<div class="container ">
+    <center><b><h2  style="color:#6a1b21 ;border: 7px solid #6a1b21; background-color:#e7c9a2; width:85rem !important; border-radius: 10px"><center>My Notes</center></h2></b></center>
+    <div class="row" style="margin:200px auto ; margin-top:10px"  >
+            <div class="row justify-content-center">
+                {% for notes in my_notes %}
+                <div class="col-lg-4 mbr-col-md-10">
+
+                  <a href="/note_details/{{notes.id}}"><div class="flight">
+
+                        <div class="ico-flight">
+                            <img class="media-object" src="{% static 'images/notepicture.png' %}" style="height: 80px; width: 90px"><br>
+                             <a href="/delete_note/{{ notes.id }}"  style="background-color:#6a1b21;color:#6a1b21" ><button><b>Delete Note</b></button></a>
+
+                        </div>
+                        <div class="text-flight center">
+                            <h2 class="fonts-style ie-bold type-title display-title" style="color:#000000"><span>{{notes.note_title}}</span></h2>
+
+                        </div>
+
+
+                    </div></a>
+
+                </div>
+                 {% endfor %}
+
+    </div>
+</div>>
+</div></section>
+{% endif %}
+
+</body>
+{% endblock %}
+</html>

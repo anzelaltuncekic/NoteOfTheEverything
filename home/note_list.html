@@ -1,0 +1,162 @@
+{% extends 'home/mainpage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<body>
+<div >
+    {% if requested_user_type.user_type == 'A' %}
+        <center><b><h2 style="color:#6a1b21 ;border: 7px solid #6a1b21; background-color:#e7c9a2; width:85rem !important; border-radius: 10px"><center>All Lecture Notes</center></h2></b></center>
+         <div class="container" style="border-radius: 10px;" >
+              <div class=" col-lg-7 col-md-7 col-sm-12 p-0" style="margin-left:24rem !important;">
+                    {% for i in filter_note %}
+                          <div class="well" style="background-color:#e7c9a2;box-shadow: 2px 2px 5px 5px #6a1b21">
+                              <div class="media">
+                                <a class="pull-left">
+                                    <img class="media-object" src="{% static 'images/notepicture.png' %}" style="height: 80px; width: 90px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading" style="margin-left:30px"><b>{{ i.note_title }}</b></h4>
+                                    <p class="description" style="margin-left:30px">Description: {{i.note_description}} </p>
+                                    <h6><span><i class="glyphicon glyphicon-star" style="margin-left:30px"></i>{{i.note_score}} / 5</span></h6>
+                                    </div>
+                                    <button style=" background-color:#6a1b21; border-radius: 6px "><a href="{% url 'note_details' i.id%}"  style="color:#e7c9a2"> View Note Details</a></button>
+                                </div>
+                              <div >
+                                    {% for j in pending_comment_note %}
+                                       {% if j.note.id == i.id %}
+                                               <button style="margin-left: 45rem !important ; background-color:#6a1b21; border-radius: 6px"><a href="{% url 'admin_pending_comments' i.id%}"  style="color:#e7c9a2">Pending Comment </a></button>
+                                       {% endif %}
+                                    {% endfor %}
+</div>
+
+
+                          </div>
+                    {% endfor %}
+                </div>
+        </div>
+
+
+{% else %}
+
+<form action="{% url 'note_list' %}" method="get">
+    <section class="search-sec p-3 my-5">
+        <div class="container" style=" margin-top:40px; border-radius: 10px">
+                <div class="row justify-content-center text-white">
+                    <div class="col-lg-12">
+                        <div class="row justify-content-center">
+                            <div class=" col-lg-5 col-md-5 col-sm-12 p-0" style="margin-left:280px">
+                                <input type="text" name="query" class="form-control search-slt" value="{{ query }}">
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-12 p-0">
+                                <button onclick="document.getElementById('primarybutton').click()" type="button" class="btn btn-danger wrn-btn" style="background-color:#6a1b21 ; color:#e7c9a2" id="uselessbutton">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+
+<br><br>
+
+<div class="container p-1 my-1 text-white rounded" >
+    <div class="row blog" >
+        <div class="col-md-3 " >
+                <div class="rounded p-2"   style="color:#6a1b21;background-color:#e7c9a2;box-shadow: 2px 2px 5px 5px #6a1b21; border-radius: 10px;">
+                    <center><h2 class="is-size-5">Filter</h2></center>
+                    <div class="row " style="margin-left:20px">
+                        <div class="row">
+                        <div class="col-md-10">
+                            <label>Subject</label>
+                            <center>{% render_field myFilter.form.note_subject class="form-control" %}</center>
+                        </div>
+                    </div>
+                    <br><br>
+                        <div class="col-md-5">
+                            <label>Page Number</label>
+                            <input type="number" name="page_num_from" class="form-control" value="{{ page_num_from }}" min="0"
+                                   max="1000" required>
+                        </div>
+
+                         <div class="col-md-5">
+                            <label>Page Number</label>
+                            <input type="number" name="page_num_to" class="form-control" value="{{ page_num_to }}" min="0"
+                                   max="1000" required>
+                        </div>
+                    </div>
+                    <br><br>
+
+                     <div class="row "  style="margin-left:20px">
+                        <div class="col-md-5">
+                            <label>Note Score</label>
+                            <input type="number" name="score_from" class="form-control" value="{{ score_from }}" min="0"
+                                   max="5" required>
+                        </div>
+
+                         <div class="col-md-5">
+                            <label>Note Score</label>
+                            <input type="number" name="score_to" class="form-control" value="{{ score_to }}" min="0"
+                                   max="5" required>
+                        </div>
+
+                    </div>
+                    <br><br>
+
+                    <center>
+                        <button class="btn btn-danger" style="background-color:#6a1b21 ; color:#e7c9a2"  id="primarybutton">Search</button>
+                    </center>
+<br>
+                </div>
+
+        </div>
+
+
+
+        <div class="col-md-1">
+            <br>
+        </div>
+</div>
+
+        <div class="container" style=" margin-top:-420px; border-radius: 10px">
+            <div class=" col-lg-7 col-md-7 col-sm-12 p-0" style="margin-left:60px" >
+                {% if notecount == 0 %}
+                        <center><b><h3 style="color:#6a1b21 ;border: 5px solid #6a1b21; background-color:#e7c9a2; width:50rem !important; border-radius: 10px"><center>No notes found for the searched word.</center></h3></b></center>
+                 {% else %}
+                    {% for i in filter_note %}
+                          <div class="well" style="background-color:#e7c9a2 ;box-shadow: 2px 2px 5px 5px #6a1b21">
+                              <div class="media">
+                                <a class="pull-left">
+                                    <img class="media-object" src="{% static 'images/sarınot.png' %}" style="height: 100px; width: 100px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading" style="margin-left:30px"><b>{{ i.note_title }}</b></h4>
+                                   <p class="description" style="margin-left:30px">Description: {{i.note_description}} </p>
+                                    <h6><span><i class="glyphicon glyphicon-star" style="margin-left:30px"></i> {{i.note_score}} / 5</span></h6>
+                               </div>
+
+                                  <button style="margin-left: 45rem !important; background-color:#6a1b21; border-radius: 6px"><a href="{% url 'note_details' i.id%}"  style="color:#e7c9a2">View Note Details</a></button>
+
+                            </div>
+                          </div>
+                    {% endfor %}
+        {% endif %}
+          </div>
+        </div>
+
+
+
+
+
+</div>
+
+</form>
+
+{% endif %}
+</div></body>
+{% endblock %}

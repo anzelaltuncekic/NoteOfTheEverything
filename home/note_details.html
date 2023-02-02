@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+{% extends 'home/mainpage.html' %}
+{% load static %}
+{% block content %}
+
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+</head>
+<style>
+
+.des{
+  text-align: justify;
+  text-transform: uppercase;
+  color: #114045 ;
+  word-wrap:break-word;
+
+}
+h1{
+text-shadow: 2px 2px 5px #2F4345;
+text-align: center;
+text-transform: capitalize;
+}
+mark{
+background-color:#AFDFE3;
+border-radius: 25%;
+}
+hr {
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
+#content-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#featured{
+	max-width: 500px;
+	max-height: 600px;
+	object-fit: cover;
+	cursor: pointer;
+	border: 2px solid black;
+	zoom:200%;
+
+}
+
+.animation {
+  width: 100px;
+  height: 100px;
+  animation-name: example;
+  background-color: #D1D1D1;
+  animation-duration: 4s;
+}
+
+@keyframes example {
+  0%   {background-color: #878787;}
+  10%  {background-color: #E5E5E5;}
+  20%  {background-color: #D1D1D1;}
+  30% {background-color: #B3B3B3;}
+  40%  {background-color: #999999;}
+  50% {background-color: #878787;}
+  60%  {background-color: #999999;}
+  70% {background-color: #B3B3B3;}
+  80%  {background-color: #D1D1D1;}
+  90% {background-color: #E5E5E5;}
+  100%  {background-color: #878787;}
+
+}
+
+.thumbnail{
+	object-fit: cover;
+	max-width: 180px;
+	max-height: 100px;
+	cursor: pointer;
+	opacity: 0.5;
+	margin: 5px;
+	border: 2px solid black;
+
+}
+
+.thumbnail:hover{
+	opacity:1;
+}
+
+.active{
+	opacity: 1;
+}
+
+#slide-wrapper{
+	max-width: 500px;
+	display: flex;
+	min-height: 100px;
+	align-items: center;
+	margin-left:250px;
+}
+
+#slider{
+	width: 440px;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+
+}
+
+#slider::-webkit-scrollbar {
+		width: 8px;
+
+}
+
+#slider::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+}
+
+#slider::-webkit-scrollbar-thumb {
+  background-color: #7B9395 ;
+  outline: 1px solid slategrey;
+   border-radius: 100px;
+
+}
+
+#slider::-webkit-scrollbar-thumb:hover{
+    background-color: #2F4345;
+}
+
+.arrow{
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	transition: .3s;
+	border-radius:30%;
+}
+
+.arrow:hover{
+	opacity: .5;
+	width: 55px;
+	height: 55px;
+}
+
+.single-review {
+  margin-bottom: 30px;
+}
+
+.single-review .review-heading>div {
+  display: inline-block;
+
+}
+
+.single-review .review-heading>div+div {
+  margin-left: 10px;
+
+}
+
+.single-review .review-rating {
+  display: inline-block;
+}
+
+.single-review .review-rating>i {
+  color: #6a1b21;
+}
+
+.single-review .review-rating>i.empty {
+  color: #6a1b21;
+}
+
+.single-review .review-body {
+  margin-top: 10px;
+}
+
+
+
+.reviews-pages li {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.reviews-pages li a {
+  display: block;
+  min-width: 10px;
+  text-align: center;
+}
+
+.reviews-pages li.active {
+  color: #F8694A;
+}
+
+/-- review form --/
+
+.review-form textarea.input {
+  height: 90px;
+}
+
+.review-form .input-rating .stars {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.review-form .input-rating .stars input[type="radio"] {
+  display: none;
+}
+
+.review-form .input-rating .stars>label {
+  float: right;
+  cursor: pointer;
+  padding: 0px 3px;
+  margin: 0px;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+
+.review-form .input-rating .stars>label:hover, .review-form .input-rating .stars>label:hover~label {
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.review-form .input-rating .stars>label:before {
+  content: "\f006";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  color: #6a1b21;
+  font-size: 17px;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+
+.review-form .input-rating .stars>label:hover:before, .review-form .input-rating .stars>label:hover~label:before {
+  content: "\f005";
+  color: #6a1b21;
+}
+
+.review-form .input-rating .stars>input:checked label:before, .review-form .input-rating .stars>input:checked~label:before {
+  content: "\f005";
+  color: #6a1b21;
+}
+.primary-btn {
+  color: #FFF;
+  background-color:#6a1b21;
+  width: 100%;
+}
+
+.primary-btn:hover, .primary-btn:focus {
+  color: #FFF;
+  background-color: #30323A;
+}
+.main-btn, .primary-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+
+.icon-btn.main-btn, .icon-btn.primary-btn {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  padding: 0px;
+  border: none;
+}
+
+
+
+</style>
+
+<body>
+{% if requested_user_type.user_type == 'A' %}
+    <div style="color:#6a1b21 ;border: 5px solid #6a1b21; background-color:#e7c9a2 ;padding:5px;margin:40px; border-radius: 10px;">
+			<h1>{{notes.note_title}}</h1>
+              {% for i in pending_note %}
+                <a style="color:#6a1b21" href="{% url 'Cancelled_note' i.id %}"> <img src="{% static 'images/delete.png' %}" style="margin-left:88%; height: 4%; width: 4%">Delete Note</a>
+                <a style="color:#6a1b21;" href="{% url 'Approved_note' i.id %}"> <img src="{% static 'images/send.png' %}" style="margin-left:88.5%; height: 3.5%; width: 3.5%">Publish Note</a>
+            <hr>
+              {% endfor %}
+            <h4 class="des"><mark style="background-color:#6a1b21;color:#e7c9a2">By:</mark>&nbsp;{{notes.registereduser.first_name}}</h4>
+			<h4 class="des"><mark style="background-color:#6a1b21;color:#e7c9a2">Description:</mark>&nbsp;{{notes.note_description}}</h4>
+        <br>
+        {% if doc_type == 'docx' or doc_type == 'pdf' or doc_type == 'pptx' or  doc_type == 'xlsx' or doc_type == 'zip' or doc_type == 'rar' %}
+            {% for i in note_image %}
+                <center><img src="{% static 'images/giphy.gif' %}" style="height: 80px; width: 90px; margin-bottom:30px">
+            <button style="background-color:white ; color:black; margin-right:120px; "><b><a href="{{i.image.url}}" download>Click here to download the note</a></b></button></center>
+
+            {% endfor %}
+        {% else %}
+        <p>Click to download the note</p>
+            {% for i in note_image %}
+            <button style="background-color:white ; color:black"><b><a href="{{i.image.url}}" download> {{i.image}}</a></b></button>
+            {% endfor %}
+        {% endif %}
+
+
+
+</div>
+
+	<div id="content-wrapper">
+		<div class="column">
+                {% if doc_type == 'png' or doc_type == 'jpg' or doc_type == 'jpeg' %}
+                    <img id=featured src="{% static note_image.first.image.url %}">
+                {% elif doc_type == 'docx' %}
+                    <center><img src="{% static 'images/word_logo2.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'pdf' %}
+                    <center><img src="{% static 'images/pdf_symbol.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'pptx' %}
+                    <center><img src="{% static 'images/powerpoint.png' %}"  style="height: 50%; width: 50%"></center>
+                {% elif doc_type == 'xlsx' %}
+                    <center><img src="{% static 'images/excel_logo.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'zip' %}
+                    <center><img src="{% static 'images/zip_logo.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'rar' %}
+                    <center><img src="{% static 'images/rar.png' %}"  style="height: 70%; width: 70%"></center>
+                {% endif %}
+                {% if doc_type == 'png' or doc_type == 'jpg' or doc_type == 'jpeg' %}
+                   <div id="slide-wrapper"  >
+
+                <button id="slideLeft" class="arrow animation" > <b><<</b> </button>
+
+                <div id="slider" >
+
+
+                    {% for i in note_image %}
+                        <img class="thumbnail" src="{% static i.image.url %}" >
+                    {% endfor %}
+                </div>
+
+                <button id="slideRight" class="arrow animation" > <b>>></b> </button>
+            </div>
+             {% endif %}
+
+         </div>
+
+
+
+	</div>
+
+<br>
+        <div class="col-md-6">
+                                    <div  style="color:#6a1b21 ;border: 5px solid #6a1b21; background-color:#e7c9a2 ;padding:5px;margin:60px;border-radius: 10px;">
+                                    <div class="product-reviews">
+                                        {% if my_comments_count == 0 %}
+                                            <h3>No comments</h3>
+                                        {% else %}
+                                        {% for rs in comments %}
+                                            <div class="single-review">
+                                                <div class="review-heading">
+                                                    {% if rs.comment_owner == 'Anonymous' %}
+                                                        <div><a style="color:#6a1b21"><i class="fa fa-user-o"></i>Anonymous</a> </div>
+                                                    {% else %}
+                                                        <div><a style="color:#6a1b21"><i class="fa fa-user-o"></i> {{rs.registereduser.username}}</a> </div>
+
+                                                    {% endif %}
+                                                    <div><a style="color: #6a1b21"><i class="fa fa-clock-o"></i> {{ rs.create_at}}</a></div>
+                                                </div>
+												<div class="review-rating ">
+                                                        <i class="fa fa-star{% if rs.rating < 1 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 2 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 3 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 4 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 5 %}-o empty{% endif %}"></i>
+                                                    </div>
+                                                <div class="review-body">
+                                                 <p>{{ rs.comment }}</p>
+                                                </div>
+                                            </div>
+										<hr>
+                                        {% endfor %}
+                                    {% endif %}
+                                    </div>
+                                </div>
+
+
+</div>
+
+
+
+		</div>
+
+<script type="text/javascript">
+		let thumbnails = document.getElementsByClassName('thumbnail')
+
+		let activeImages = document.getElementsByClassName('active')
+
+		for (var i=0; i < thumbnails.length; i++){
+
+			thumbnails[i].addEventListener('mouseover', function(){
+				console.log(activeImages)
+
+				if (activeImages.length > 0){
+					activeImages[0].classList.remove('active')
+				}
+
+
+				this.classList.add('active')
+				document.getElementById('featured').src = this.src
+			})
+		}
+
+
+		let buttonRight = document.getElementById('slideRight');
+		let buttonLeft = document.getElementById('slideLeft');
+
+		buttonLeft.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft -= 180
+		})
+
+		buttonRight.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft += 180
+		})
+
+
+	</script>
+<br><br>
+
+
+{% else %}
+
+<div style="color:#6a1b21 ;border: 5px solid #6a1b21; background-color:#e7c9a2 ; padding:5px; margin:40px; border-radius: 10px">
+			<h1>{{notes.note_title}}</h1>
+           {% for favnote in all_note %}
+                {% if favnote in favourite_notes  %}
+                        <a  href="{% url 'delete_fav_note' favnote.id %}"> <img src="{% static 'images/delete.png' %}" style="height: 3%; width: 3%; margin-left:93%; "></a>
+                        <a href="{% url 'delete_fav_note' favnote.id %}" style="margin-left:90% ;color:#6a1b21">Delete In Favorites</a>
+                {% else %}
+                       <a  href="{% url 'favourite_note' notes.id %}"> <img src="{% static 'images/favori3.png' %}" style="height: 3%; width: 3%; margin-left:92.5%; "></a>
+                       <a  href="{% url 'favourite_note' notes.id %}" style="color:#6a1b21; margin-left:90%;"> Add to Favourite</a>
+    {% endif %}
+            {% endfor %}
+	<hr>
+            <h4 class="des"><mark style="background-color:#6a1b21;color:#e7c9a2">By:</mark>&nbsp;{{notes.registereduser.first_name}}</h4>
+			<h4 class="des"><mark style="background-color:#6a1b21;color:#e7c9a2">Description:</mark>&nbsp;{{notes.note_description}}</h4>
+            <h4 class="des"><mark style="background-color:#6a1b21;color:#e7c9a2">Total Score:</mark>&nbsp;{{all_rating}}</h4>
+	<br>
+        {% if doc_type == 'docx' or doc_type == 'pdf' %}
+            {% for i in note_image %}
+                <center><img src="{% static 'images/giphy.gif' %}" style="height: 80px; width: 90px; margin-bottom:30px">
+            <button style="background-color:white ; color:black; margin-right:120px"><b><a href="{{i.image.url}}" download>Click here to download the note</a></b></button></center>
+
+            {% endfor %}
+        {% else %}
+        <p>Click here to download the note</p>
+            {% for i in note_image %}
+            <button style="background-color:white ; color:black"><b><a href="{{i.image.url}}" download> {{i.image}}</a></b></button>
+            {% endfor %}
+        {% endif %}
+
+
+
+</div>
+	<div id="content-wrapper">
+		<div class="column">
+                {% if doc_type == 'png' or doc_type == 'jpg' or doc_type == 'jpeg' %}
+                    <img id=featured src="{% static note_image.first.image.url %}">
+                {% elif doc_type == 'docx' %}
+                    <center><img src="{% static 'images/word_logo2.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'pdf' %}
+                    <center><img src="{% static 'images/pdf_symbol.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'pptx' %}
+                    <center><img src="{% static 'images/powerpoint.png' %}"  style="height: 50%; width: 50%"></center>
+                {% elif doc_type == 'xlsx' %}
+                    <center><img src="{% static 'images/excel_logo.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'zip' %}
+                    <center><img src="{% static 'images/zip_logo.png' %}"  style="height: 70%; width: 70%"></center>
+                {% elif doc_type == 'rar' %}
+                    <center><img src="{% static 'images/rar.png' %}"  style="height: 70%; width: 70%"></center>
+                {% endif %}
+                {% if doc_type == 'png' or doc_type == 'jpg' or doc_type == 'jpeg' %}
+                   <div id="slide-wrapper"  >
+
+                <button id="slideLeft" class="arrow animation" > <b><<</b> </button>
+
+                <div id="slider" >
+
+
+                    {% for i in note_image %}
+                        <img class="thumbnail" src="{% static i.image.url %}" >
+                    {% endfor %}
+                </div>
+
+                <button id="slideRight" class="arrow animation" > <b>>></b> </button>
+            </div>
+             {% endif %}
+
+         </div>
+
+
+
+	</div>
+<br>
+
+		</div>
+	 <div id="tab2" class="tab-pane fade in">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div  style="color:#6a1b21 ;border: 5px solid #6a1b21; background-color:#e7c9a2 ;padding:5px;margin:60px;border-radius: 10px;">
+                                    <div class="product-reviews">
+                                        {% if my_comments_count == 0 %}
+                                            <h3>No comments</h3>
+                                        {% else %}
+                                        {% for rs in comments %}
+                                            <div class="single-review">
+                                                <div class="review-heading">
+                                                    {% if rs.comment_owner == 'Anonymous' %}
+                                                        <div><a style="color:#6a1b21"><i class="fa fa-user-o"></i>Anonymous</a> </div>
+                                                    {% else %}
+                                                        <div><a style="color:#6a1b21"><i class="fa fa-user-o"></i> {{rs.registereduser.username}}</a> </div>
+
+                                                    {% endif %}
+                                                    <div><a style="color: #6a1b21"><i class="fa fa-clock-o"></i> {{ rs.create_at}}</a></div>
+                                                </div>
+												<div class="review-rating ">
+                                                        <i class="fa fa-star{% if rs.rating < 1 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 2 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 3 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 4 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rating < 5 %}-o empty{% endif %}"></i>
+                                                    </div>
+                                                <div class="review-body">
+                                                 <p>{{ rs.comment }}</p>
+                                                </div>
+                                            </div>
+										<hr>
+                                        {% endfor %}
+                                    {% endif %}
+                                    </div>
+                                </div>
+
+
+</div>
+                                <div class="col-md-6">
+                                    <div  style="color:#6a1b21 ;border: 5px solid #6a1b21; background-color:#e7c9a2 ;padding:5px;margin:60px;border-radius: 10px">
+                                        <center>
+                                    <h4 class="text-uppercase">Write Your Review</h4>
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{message.tags}}" role="alert">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <form class="review-form" action="/note_details/{{ notes.id }}" method="POST">
+                                                {% csrf_token %}
+                                         <div class="form-group">
+                                              <label class="control-label col-sm-2" >Comment Owner:</label>
+                                             <div class="col-sm-2">
+                                            {{form.comment_owner}}
+                                             </div>
+                                         </div>
+                                        <div class="form-group">
+                                            <textarea rows="6" cols="70" maxlength="250"  name="comment" class="input" placeholder="Please Write Your Review"></textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-rating">
+                                                <strong class="text-uppercase">Your Rating: </strong>
+                                                <div class="stars">
+                                                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+                                                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+                                                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+                                                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+                                                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <button class="primary-btn" style="border-radius: 10px" >Submit</button>
+
+                                    </form>
+                                        </center>
+                                </div>
+
+                        </div>
+                            </div>
+     </div>
+
+
+
+
+
+<script type="text/javascript">
+		let thumbnails = document.getElementsByClassName('thumbnail')
+
+		let activeImages = document.getElementsByClassName('active')
+
+		for (var i=0; i < thumbnails.length; i++){
+
+			thumbnails[i].addEventListener('mouseover', function(){
+				console.log(activeImages)
+
+				if (activeImages.length > 0){
+					activeImages[0].classList.remove('active')
+				}
+
+
+				this.classList.add('active')
+				document.getElementById('featured').src = this.src
+			})
+		}
+
+
+		let buttonRight = document.getElementById('slideRight');
+		let buttonLeft = document.getElementById('slideLeft');
+
+		buttonLeft.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft -= 180
+		})
+
+		buttonRight.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft += 180
+		})
+
+
+	</script>
+<br><br>
+{% endif %}
+
+</body>
+
+
+{% endblock %}

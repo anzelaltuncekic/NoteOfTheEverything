@@ -1,0 +1,185 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "Is anyone there?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hello, thanks for visiting",
+        "Hi there, what can I do for you?",
+        "Hi there, how can I help?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "notes",
+      "patterns": [
+        "Do you have notes?",
+        "How can ı find lecture notes?",
+        "How can ı find notes?"
+      ],
+      "responses": [
+        "You can find the notes in the homepage :)",
+        "You can find the note you are looking for from the search box on the homepage or by using the filtering feature."
+      ]
+    },
+    {
+      "tag": "comment",
+      "patterns": [
+        "How can ı write a comment?",
+        "How can ı rate a note?",
+        "How can ı give a score?"
+      ],
+      "responses": [
+        "You can see the comment and rating section at the bottom of the note details page."
+      ]
+    },
+    {
+      "tag": "score",
+      "patterns": [
+        "How is the total score of the note determined?"
+      ],
+      "responses": [
+        "It is determined by the average of the scores in the given comments."
+      ]
+    },
+    {
+      "tag": "share",
+      "patterns": [
+        "How can ı share notes?",
+        "How can ı add notes?"
+      ],
+      "responses": [
+        "You can find the ShareNote button at the top of each page :)"
+      ]
+    },
+     {
+      "tag": "publish",
+      "patterns": [
+        "When will my uploaded note be published?",
+        "Why was my comment not published?"
+      ],
+      "responses": [
+        "Your notes and comments will be published on the site after admin approval."
+      ]
+    },
+
+    {
+      "tag": "download",
+      "patterns": [
+        "How can ı download the notes?"
+      ],
+      "responses": [
+        "You can see the download button in the note details page."
+      ]
+    },
+     {
+      "tag": "password",
+      "patterns": [
+        "How can change my password?",
+        "I want to change my password"
+      ],
+      "responses": [
+        "You can find the change password button in the my account section at the top of the every page.  "
+      ]
+    },
+    {
+      "tag": "username",
+      "patterns": [
+        "How can change my username?",
+        "I want to change my username"
+      ],
+      "responses": [
+        "You can find the change username button in the my account section at the top of the every page.  "
+      ]
+    },
+
+     {
+      "tag": "email",
+      "patterns": [
+        "How can change my email address?",
+        "I want to change my email address"
+      ],
+      "responses": [
+        "You can find the change email button in the my account section at the top of the every page.  "
+      ]
+    },
+
+    {
+      "tag": "my",
+      "patterns": [
+        "How can I see the notes I have shared? ",
+        "I want to see own notes.",
+        "I want to see my notes."
+      ],
+      "responses": [
+        "You can find the my notes button in the my account section at the top of the every page.  "
+      ]
+    },
+
+     {
+      "tag": "favorite",
+      "patterns": [
+        "How can I see the my favorite notes ",
+        "I want to see own favorite notes.",
+        "I want to see my favorite notes."
+      ],
+      "responses": [
+        "You can find the my favorite notes button in the my account section at the top of the every page.  "
+      ]
+    },
+
+    {
+      "tag": "add",
+      "patterns": [
+        "How can I add the notes in my favorite notes "
+      ],
+      "responses": [
+        "You can find the add to favorites button on the note details page. "
+      ]
+    },
+
+    {
+      "tag": "delete",
+      "patterns": [
+        "How can I delete the notes in my favorite notes "
+      ],
+      "responses": [
+        "You can find the delete to favorites button on the note details page."
+      ]
+    },
+
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
+      "responses": ["Happy to help!", "Any time!", "My pleasure"]
+    },
+
+    {
+      "tag": "funny",
+      "patterns": [
+        "Tell me a joke!",
+        "Tell me something funny!",
+        "Do you know a joke?"
+      ],
+      "responses": [
+        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
+        "What did the buffalo say when his son left for college? Bison."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{% extends 'home/mainpage.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Pending Notes</title>
+</head>
+<body>
+{% if requested_user_type.user_type == 'A' %}
+         <div class="container" >
+            <div class=" col-lg-7 col-md-7 col-sm-12 p-0" style="margin-left:245px; margin-top:1%; border-radius: 10px" >
+         {% if pending_note_counts != 0 %}
+            {% for i in pending_note %}
+                  <div class="well" style="background-color:#e7c9a2 ;box-shadow: 2px 2px 5px 5px #6a1b21">
+                      <div class="media">
+                        <a class="pull-left">
+                            <img class="media-object" src="{% static 'images/notepicture.png' %}" style="height: 80px; width: 90px">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading" style="margin-left:30px"><b>{{ i.note_title }}</b></h4>
+                           <p class="description" style="margin-left:30px">Description: {{i.note_description}} </p>
+                            <h6><span><i class="glyphicon glyphicon-star" style="margin-left:30px"></i>Score: {{i.note_score}}</span></h6>
+                       </div><button style="margin-left: 45rem !important ; border-radius: 6px; background-color:#6a1b21"><a href="{% url 'note_details' i.id%}"  style="color:#e7c9a2"> View Note Details</a></button>
+                    </div>
+                  </div>
+            {% endfor %}
+         {% else %}
+                <b><h2 style="color:#6a1b21 ;border: 15px solid #6a1b21; background-color:#e7c9a2"><center>No Pending Notes</center></h2></b>
+         {% endif %}
+          </div>
+        </div>
+
+
+{% endif %}
+</body>
+</html>
+
+{% endblock %}
